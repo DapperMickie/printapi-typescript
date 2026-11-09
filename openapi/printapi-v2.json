@@ -1,0 +1,4959 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "PrintApi.Web.Api | v2",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://test.printapi.nl/v2"
+    }
+  ],
+  "paths": {
+    "/checkout/{code}": {
+      "post": {
+        "tags": [
+          "Checkout"
+        ],
+        "summary": "Set up checkout for an order.",
+        "operationId": "SetupCheckout",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "A unique checkout code.",
+            "required": true,
+            "schema": {
+              "title": "String",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Information for the Print API checkout service.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CheckoutIn"
+                  }
+                ]
+              }
+            },
+            "text/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CheckoutIn"
+                  }
+                ]
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CheckoutIn"
+                  }
+                ]
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CheckoutIn"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckoutOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckoutOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckoutOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckoutOut"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2Token": [
+              "orders:place"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Checkout"
+        ],
+        "summary": "Get the checkout status of an order.",
+        "operationId": "GetCheckoutSetup",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "A unique checkout code.",
+            "required": true,
+            "schema": {
+              "title": "String",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckoutOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckoutOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckoutOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckoutOut"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2Token": [
+              "orders:browse"
+            ]
+          }
+        ]
+      }
+    },
+    "/coupons/quote": {
+      "post": {
+        "tags": [
+          "Coupons"
+        ],
+        "summary": "Request a quote for a coupon code.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CouponIn"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CouponIn"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CouponIn"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CouponIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CouponQuoteOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CouponQuoteOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CouponQuoteOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CouponQuoteOut"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2Token": [
+              "coupons:quote"
+            ]
+          }
+        ]
+      }
+    },
+    "/orders/{id}": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Get a single order by ID.",
+        "operationId": "GetOrder",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The order ID.",
+            "required": true,
+            "schema": {
+              "title": "String",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2Token": [
+              "orders:browse"
+            ]
+          }
+        ]
+      }
+    },
+    "/orders": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Get all orders, sorted newest to oldest.",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The number of orders to skip.",
+            "schema": {
+              "title": "Int32",
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The max number of orders to return.",
+            "schema": {
+              "title": "Int32",
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderListOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderListOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderListOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderListOut"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2Token": [
+              "orders:browse"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Place an order for one or more products.",
+        "requestBody": {
+          "description": "You must include at least one item and a shipping address. Optionally, you can specify your own custom\norder ID — Print API will automatically generate a random ID if you don't — plus up to about 1kb of\nmetadata you'd like to store with your order.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderIn"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderIn"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderIn"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderOut"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2Token": [
+              "orders:place"
+            ]
+          }
+        ]
+      }
+    },
+    "/orders/{id}/status": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Get only the status of a single order by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The order ID.",
+            "required": true,
+            "schema": {
+              "title": "String",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderStatusOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderStatusOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderStatusOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderStatusOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2Token": [
+              "orders:track"
+            ]
+          }
+        ]
+      }
+    },
+    "/orders/{id}/cancellation": {
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Request cancellation of an order.",
+        "description": "Behaves like cancelling the order from the manage portal. If the order can still be cancelled\nit is cancelled immediately; otherwise a cancellation request is recorded and resolved\nasynchronously. Orders that have already shipped cannot be cancelled.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The order ID.",
+            "required": true,
+            "schema": {
+              "title": "String",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The cancellation request model.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CancellationRequestIn"
+                  }
+                ]
+              }
+            },
+            "text/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CancellationRequestIn"
+                  }
+                ]
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CancellationRequestIn"
+                  }
+                ]
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CancellationRequestIn"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancellationStatusOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancellationStatusOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancellationStatusOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancellationStatusOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2Token": [
+              "orders:cancel"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Get the current cancellation status of an order.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The order ID.",
+            "required": true,
+            "schema": {
+              "title": "String",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancellationStatusOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancellationStatusOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancellationStatusOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancellationStatusOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2Token": [
+              "orders:track"
+            ]
+          }
+        ]
+      }
+    },
+    "/products": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get all products, sorted by name (A-Z).",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The number of products to skip.",
+            "schema": {
+              "title": "Int32",
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The max number of products to return.",
+            "schema": {
+              "title": "Int32",
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32",
+              "default": 50
+            }
+          },
+          {
+            "name": "includeDetails",
+            "in": "query",
+            "description": "Return the full product, as returned by `GET /products/{id}`, for every entry. A lower max number of\nproducts applies.",
+            "schema": {
+              "title": "Boolean",
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. With `includeDetails=true`, every entry is the full product as returned by `GET /products/{id}`.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/ProductListOut"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProductWithDetailsListOut"
+                    }
+                  ]
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/ProductListOut"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProductWithDetailsListOut"
+                    }
+                  ]
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/ProductListOut"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProductWithDetailsListOut"
+                    }
+                  ]
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/ProductListOut"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProductWithDetailsListOut"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2Token": [
+              "products:browse"
+            ]
+          }
+        ]
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get a single product by ID.",
+        "operationId": "GetProduct",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The product ID.",
+            "required": true,
+            "schema": {
+              "title": "String",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                },
+                "example": {
+                  "message": "No product with the ID 'unknown-product' was found.",
+                  "hint": "Does the ID match any products found under 'Producten'?",
+                  "url": "https://portal.printapi.nl/test/manage/productoffers"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                },
+                "example": {
+                  "message": "No product with the ID 'unknown-product' was found.",
+                  "hint": "Does the ID match any products found under 'Producten'?",
+                  "url": "https://portal.printapi.nl/test/manage/productoffers"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                },
+                "example": "﻿<Error xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n  <Message>No product with the ID 'unknown-product' was found.</Message>\n  <Hint>Does the ID match any products found under 'Producten'?</Hint>\n  <Url>https://portal.printapi.nl/test/manage/productoffers</Url>\n</Error>"
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                },
+                "example": "﻿<Error xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n  <Message>No product with the ID 'unknown-product' was found.</Message>\n  <Hint>Does the ID match any products found under 'Producten'?</Hint>\n  <Url>https://portal.printapi.nl/test/manage/productoffers</Url>\n</Error>"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2Token": [
+              "products:browse"
+            ]
+          }
+        ]
+      }
+    },
+    "/shipping/quote": {
+      "post": {
+        "tags": [
+          "Shipping"
+        ],
+        "summary": "Request a shipping costs quote.",
+        "requestBody": {
+          "description": "Must contain the shipment info, including at least one item and a country.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShipmentIn"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShipmentIn"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ShipmentIn"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ShipmentIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShippingQuoteOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShippingQuoteOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShippingQuoteOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShippingQuoteOut"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2Token": [
+              "shipping:quote"
+            ]
+          }
+        ]
+      }
+    },
+    "/sync/statuses": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Get all status updates since a specific date/time.",
+        "parameters": [
+          {
+            "name": "since",
+            "in": "query",
+            "description": "The start date/time, inclusive. Max. 7 days ago.",
+            "schema": {
+              "title": "String",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderStatusUpdateListOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderStatusUpdateListOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderStatusUpdateListOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderStatusUpdateListOut"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2Token": [
+              "orders:browse"
+            ]
+          }
+        ]
+      }
+    },
+    "/files/{code}": {
+      "post": {
+        "tags": [
+          "Uploads"
+        ],
+        "summary": "Upload a print file for an order.",
+        "operationId": "Upload",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The order ID.",
+            "required": true,
+            "schema": {
+              "title": "String",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The print file, posted either as a raw body with the file's media type, or as a single part of a multipart/form-data body.",
+          "content": {
+            "application/pdf": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "image/png": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "image/jpeg": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "file"
+                ],
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadResultOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadResultOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadResultOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadResultOut"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOut"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2Token": [
+              "files:upload"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AddressIn": {
+        "title": "in:Address",
+        "required": [
+          "name",
+          "line1",
+          "postCode",
+          "city",
+          "country"
+        ],
+        "type": "object",
+        "properties": {
+          "company": {
+            "title": "String",
+            "maxLength": 64,
+            "minLength": 0,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Company"
+            }
+          },
+          "name": {
+            "title": "String",
+            "maxLength": 64,
+            "minLength": 1,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Name"
+            }
+          },
+          "line1": {
+            "title": "String",
+            "maxLength": 64,
+            "minLength": 3,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Line1"
+            }
+          },
+          "line2": {
+            "title": "String",
+            "maxLength": 64,
+            "minLength": 0,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Line2"
+            }
+          },
+          "postCode": {
+            "title": "String",
+            "maxLength": 32,
+            "minLength": 1,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "PostCode"
+            }
+          },
+          "city": {
+            "title": "String",
+            "maxLength": 64,
+            "minLength": 1,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "City"
+            }
+          },
+          "state": {
+            "title": "String",
+            "maxLength": 3,
+            "minLength": 0,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "State"
+            }
+          },
+          "country": {
+            "$ref": "#/components/schemas/Country"
+          },
+          "phone": {
+            "title": "String",
+            "maxLength": 32,
+            "minLength": 0,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Phone"
+            }
+          }
+        },
+        "xml": {
+          "name": "Address"
+        }
+      },
+      "AddressOut": {
+        "title": "out:Address",
+        "required": [
+          "name",
+          "line1",
+          "postCode",
+          "city"
+        ],
+        "type": "object",
+        "properties": {
+          "company": {
+            "title": "String",
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Company"
+            }
+          },
+          "name": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Name"
+            }
+          },
+          "line1": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Line1"
+            }
+          },
+          "line2": {
+            "title": "String",
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Line2"
+            }
+          },
+          "postCode": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "PostCode"
+            }
+          },
+          "city": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "City"
+            }
+          },
+          "state": {
+            "title": "String",
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "State"
+            }
+          },
+          "country": {
+            "$ref": "#/components/schemas/Country"
+          },
+          "phone": {
+            "title": "String",
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Phone"
+            }
+          }
+        },
+        "xml": {
+          "name": "Address"
+        }
+      },
+      "BillingIn": {
+        "title": "in:Billing",
+        "type": "object",
+        "properties": {
+          "address": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/AddressIn"
+              }
+            ]
+          }
+        },
+        "xml": {
+          "name": "Billing"
+        }
+      },
+      "BillingOut": {
+        "title": "out:Billing",
+        "type": "object",
+        "properties": {
+          "address": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/AddressOut"
+              }
+            ]
+          }
+        },
+        "xml": {
+          "name": "Billing"
+        }
+      },
+      "CancellationRequestIn": {
+        "title": "CancellationRequestBM",
+        "type": "object",
+        "properties": {
+          "reason": {
+            "title": "String",
+            "maxLength": 200,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Reason"
+            }
+          }
+        }
+      },
+      "CancellationStatus": {
+        "title": "CancellationStatus",
+        "enum": [
+          "None",
+          "Requested",
+          "Accepted",
+          "Failed"
+        ],
+        "type": "string",
+        "xml": {
+          "name": "Status"
+        }
+      },
+      "CancellationStatusOut": {
+        "title": "out:CancellationStatus",
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/CancellationStatus"
+          },
+          "reason": {
+            "title": "String",
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Reason"
+            }
+          }
+        },
+        "xml": {
+          "name": "CancellationStatus"
+        }
+      },
+      "CheckoutIn": {
+        "title": "in:CheckoutSetup",
+        "required": [
+          "returnUrl"
+        ],
+        "type": "object",
+        "properties": {
+          "returnUrl": {
+            "title": "String",
+            "maxLength": 512,
+            "minLength": 5,
+            "type": "string",
+            "xml": {
+              "name": "ReturnUrl"
+            }
+          },
+          "billing": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/BillingIn"
+              }
+            ]
+          },
+          "billingAddress": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/AddressIn"
+              }
+            ]
+          }
+        },
+        "xml": {
+          "name": "Checkout"
+        }
+      },
+      "CheckoutOut": {
+        "title": "out:Checkout",
+        "required": [
+          "paymentUrl",
+          "returnUrl",
+          "billing"
+        ],
+        "type": "object",
+        "properties": {
+          "amount": {
+            "title": "Decimal",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "Amount"
+            }
+          },
+          "status": {
+            "$ref": "#/components/schemas/PaymentStatus"
+          },
+          "paymentUrl": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "PaymentUrl"
+            }
+          },
+          "returnUrl": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "ReturnUrl"
+            }
+          },
+          "billing": {
+            "$ref": "#/components/schemas/BillingOut"
+          },
+          "tax": {
+            "title": "Nullable`1",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "null",
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "Tax"
+            }
+          }
+        },
+        "xml": {
+          "name": "Checkout"
+        }
+      },
+      "Country": {
+        "title": "Country",
+        "enum": [
+          "AF",
+          "AX",
+          "AL",
+          "DZ",
+          "AS",
+          "AD",
+          "AO",
+          "AI",
+          "AQ",
+          "AG",
+          "AR",
+          "AM",
+          "AW",
+          "AU",
+          "AT",
+          "AZ",
+          "BS",
+          "BH",
+          "BD",
+          "BB",
+          "BY",
+          "BE",
+          "BZ",
+          "BJ",
+          "BM",
+          "BT",
+          "BO",
+          "BQ",
+          "BA",
+          "BW",
+          "BV",
+          "BR",
+          "IO",
+          "BN",
+          "BG",
+          "BF",
+          "BI",
+          "KH",
+          "CM",
+          "CA",
+          "CV",
+          "KY",
+          "CF",
+          "TD",
+          "CL",
+          "CN",
+          "CX",
+          "CC",
+          "CO",
+          "KM",
+          "CG",
+          "CD",
+          "CK",
+          "CR",
+          "CI",
+          "HR",
+          "CW",
+          "CY",
+          "CZ",
+          "DK",
+          "DJ",
+          "DM",
+          "DO",
+          "EC",
+          "EG",
+          "SV",
+          "GQ",
+          "ER",
+          "EE",
+          "ET",
+          "FK",
+          "FO",
+          "FJ",
+          "FI",
+          "FR",
+          "GF",
+          "PF",
+          "TF",
+          "GA",
+          "GM",
+          "GE",
+          "DE",
+          "GH",
+          "GI",
+          "GR",
+          "GL",
+          "GD",
+          "GP",
+          "GU",
+          "GT",
+          "GG",
+          "GN",
+          "GW",
+          "GY",
+          "HT",
+          "HM",
+          "VA",
+          "HN",
+          "HK",
+          "HU",
+          "IS",
+          "IN",
+          "ID",
+          "IQ",
+          "IE",
+          "IM",
+          "IL",
+          "IT",
+          "JM",
+          "JP",
+          "JE",
+          "JO",
+          "KZ",
+          "KE",
+          "KI",
+          "KR",
+          "KW",
+          "KG",
+          "LA",
+          "LV",
+          "LB",
+          "LS",
+          "LR",
+          "LY",
+          "LI",
+          "LT",
+          "LU",
+          "MO",
+          "MK",
+          "MG",
+          "MW",
+          "MY",
+          "MV",
+          "ML",
+          "MT",
+          "MH",
+          "MQ",
+          "MR",
+          "MU",
+          "YT",
+          "MX",
+          "FM",
+          "MD",
+          "MC",
+          "MN",
+          "ME",
+          "MS",
+          "MA",
+          "MZ",
+          "MM",
+          "NA",
+          "NR",
+          "NP",
+          "NL",
+          "AN",
+          "NC",
+          "NZ",
+          "NI",
+          "NE",
+          "NG",
+          "NU",
+          "NF",
+          "MP",
+          "NO",
+          "OM",
+          "PK",
+          "PW",
+          "PS",
+          "PA",
+          "PG",
+          "PY",
+          "PE",
+          "PH",
+          "PN",
+          "PL",
+          "PT",
+          "PR",
+          "QA",
+          "RE",
+          "RO",
+          "RU",
+          "RW",
+          "BL",
+          "SH",
+          "KN",
+          "LC",
+          "MF",
+          "PM",
+          "VC",
+          "WS",
+          "SM",
+          "ST",
+          "SA",
+          "SN",
+          "RS",
+          "SC",
+          "SL",
+          "SG",
+          "SX",
+          "SK",
+          "SI",
+          "SB",
+          "SO",
+          "ZA",
+          "GS",
+          "SS",
+          "ES",
+          "LK",
+          "SR",
+          "SJ",
+          "SZ",
+          "SE",
+          "CH",
+          "TW",
+          "TJ",
+          "TZ",
+          "TH",
+          "TL",
+          "TG",
+          "TK",
+          "TO",
+          "TT",
+          "TN",
+          "TR",
+          "TM",
+          "TC",
+          "TV",
+          "UG",
+          "UA",
+          "AE",
+          "GB",
+          "US",
+          "UM",
+          "UY",
+          "UZ",
+          "VU",
+          "VE",
+          "VN",
+          "VG",
+          "VI",
+          "WF",
+          "EH",
+          "YE",
+          "ZM",
+          "ZW",
+          "IC",
+          "EA"
+        ],
+        "type": "string",
+        "xml": {
+          "name": "Country"
+        }
+      },
+      "CouponIn": {
+        "title": "in:Coupon",
+        "required": [
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "title": "String",
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string",
+            "xml": {
+              "name": "Code"
+            }
+          },
+          "productsAmount": {
+            "title": "Nullable`1",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "null",
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "ProductsAmount"
+            }
+          },
+          "shippingAmount": {
+            "title": "Nullable`1",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "null",
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "ShippingAmount"
+            }
+          }
+        },
+        "xml": {
+          "name": "Coupon"
+        }
+      },
+      "CouponQuoteOut": {
+        "title": "out:Coupon.Quote",
+        "type": "object",
+        "properties": {
+          "expirationDateTime": {
+            "$ref": "#/components/schemas/FixedFormatDateTime"
+          },
+          "state": {
+            "$ref": "#/components/schemas/CouponState"
+          },
+          "type": {
+            "$ref": "#/components/schemas/CouponType"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/CouponScope"
+          },
+          "percentage": {
+            "title": "Nullable`1",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "Percentage"
+            }
+          },
+          "amount": {
+            "title": "Nullable`1",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "null",
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "Amount"
+            }
+          },
+          "calculated": {
+            "title": "Nullable`1",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "null",
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "Calculated"
+            }
+          }
+        },
+        "xml": {
+          "name": "Quote"
+        }
+      },
+      "CouponScope": {
+        "title": "CouponScope",
+        "enum": [
+          "Products",
+          "Total"
+        ],
+        "type": "string",
+        "xml": {
+          "name": "Scope"
+        }
+      },
+      "CouponState": {
+        "title": "CouponState",
+        "enum": [
+          "Invalid",
+          "Expired",
+          "Valid"
+        ],
+        "type": "string",
+        "xml": {
+          "name": "State"
+        }
+      },
+      "CouponType": {
+        "title": "CouponType",
+        "enum": [
+          "Amount",
+          "Percentage"
+        ],
+        "type": "string",
+        "xml": {
+          "name": "Type"
+        }
+      },
+      "ErrorFieldOut": {
+        "title": "Field",
+        "required": [
+          "key",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "key": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Key"
+            }
+          },
+          "errors": {
+            "title": "String[]",
+            "type": "array",
+            "items": {
+              "title": "String",
+              "type": "string",
+              "xml": {
+                "name": "Error"
+              }
+            },
+            "xml": {
+              "name": "Errors"
+            }
+          }
+        },
+        "xml": {
+          "name": "Field"
+        }
+      },
+      "ErrorOut": {
+        "title": "Error",
+        "required": [
+          "message",
+          "hint"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Message"
+            }
+          },
+          "hint": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Hint"
+            }
+          },
+          "url": {
+            "title": "String",
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Url"
+            }
+          },
+          "fields": {
+            "title": "ErrorFieldVM[]",
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/ErrorFieldOut"
+            },
+            "xml": {
+              "name": "Fields"
+            }
+          }
+        },
+        "xml": {
+          "name": "Error"
+        }
+      },
+      "FileStatus": {
+        "title": "FileStatus",
+        "enum": [
+          "Cancelled",
+          "DownloadFailed",
+          "PaymentRequired",
+          "DownloadRetryPending",
+          "DownloadPending",
+          "DownloadInProgress",
+          "AwaitingUpload",
+          "UploadInProgress",
+          "Accepted"
+        ],
+        "type": "string",
+        "xml": {
+          "name": "Status"
+        }
+      },
+      "FileType": {
+        "title": "FileType",
+        "enum": [
+          "Unknown",
+          "PDF",
+          "JPEG",
+          "PNG"
+        ],
+        "type": "string",
+        "xml": {
+          "name": "FileType"
+        }
+      },
+      "FixedFormatDateTime": {
+        "title": "FixedFormatDateTime",
+        "type": "string",
+        "format": "date-time",
+        "xml": {
+          "name": "ExpirationDateTime"
+        }
+      },
+      "InvoiceEntryOut": {
+        "title": "out:InvoiceEntry",
+        "required": [
+          "taxes"
+        ],
+        "type": "object",
+        "properties": {
+          "cost": {
+            "title": "Decimal",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "Cost"
+            }
+          },
+          "taxes": {
+            "title": "InvoiceEntryTaxVM[]",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceEntryTaxOut"
+            },
+            "xml": {
+              "name": "Taxes"
+            }
+          }
+        },
+        "xml": {
+          "name": "Production"
+        }
+      },
+      "InvoiceEntryTaxOut": {
+        "title": "out:InvoiceEntryTax",
+        "type": "object",
+        "properties": {
+          "rate": {
+            "title": "Decimal",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "Rate"
+            }
+          },
+          "amount": {
+            "title": "Decimal",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "Amount"
+            }
+          },
+          "calculatedOver": {
+            "title": "Nullable`1",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "null",
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "CalculatedOver"
+            }
+          }
+        },
+        "xml": {
+          "name": "Tax"
+        }
+      },
+      "InvoiceOut": {
+        "title": "out:Invoice",
+        "required": [
+          "production",
+          "shipping",
+          "handling",
+          "discount",
+          "total"
+        ],
+        "type": "object",
+        "properties": {
+          "production": {
+            "$ref": "#/components/schemas/InvoiceEntryOut"
+          },
+          "shipping": {
+            "$ref": "#/components/schemas/InvoiceEntryOut"
+          },
+          "handling": {
+            "$ref": "#/components/schemas/InvoiceEntryOut"
+          },
+          "discount": {
+            "$ref": "#/components/schemas/InvoiceEntryOut"
+          },
+          "total": {
+            "$ref": "#/components/schemas/InvoiceEntryOut"
+          }
+        },
+        "xml": {
+          "name": "Invoice"
+        }
+      },
+      "InvoicingState": {
+        "title": "InvoicingState",
+        "enum": [
+          "Included",
+          "Excluded"
+        ],
+        "type": "string",
+        "xml": {
+          "name": "InvoicingState"
+        }
+      },
+      "OrderIn": {
+        "title": "in:Order",
+        "required": [
+          "items"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "String",
+            "maxLength": 36,
+            "minLength": 0,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Id"
+            }
+          },
+          "email": {
+            "title": "String",
+            "maxLength": 254,
+            "minLength": 0,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Email"
+            }
+          },
+          "username": {
+            "title": "String",
+            "maxLength": 64,
+            "minLength": 0,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Username"
+            }
+          },
+          "productionSpeed": {
+            "$ref": "#/components/schemas/ProductionSpeed"
+          },
+          "items": {
+            "title": "OrderItemBM[]",
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/OrderItemIn"
+            },
+            "xml": {
+              "name": "Items"
+            }
+          },
+          "shipping": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ShippingIn"
+              }
+            ]
+          },
+          "coupon": {
+            "title": "String",
+            "maxLength": 64,
+            "minLength": 0,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Coupon"
+            }
+          },
+          "metadata": {
+            "title": "String",
+            "maxLength": 4092,
+            "minLength": 0,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Metadata"
+            }
+          },
+          "shippingAddress": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/AddressIn"
+              }
+            ]
+          }
+        },
+        "xml": {
+          "name": "Order"
+        }
+      },
+      "OrderItemFileListEntryOut": {
+        "title": "out:File",
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/FileStatus"
+          },
+          "downloadUrl": {
+            "$comment": "Download only",
+            "title": "String",
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "DownloadUrl"
+            }
+          },
+          "uploadUrl": {
+            "$comment": "Upload only",
+            "title": "String",
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "UploadUrl"
+            }
+          }
+        },
+        "xml": {
+          "name": "Content"
+        }
+      },
+      "OrderItemFileListIn": {
+        "title": "in:Files",
+        "type": "object",
+        "properties": {
+          "content": {
+            "title": "String",
+            "maxLength": 2048,
+            "minLength": 5,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Content"
+            }
+          },
+          "cover": {
+            "title": "String",
+            "maxLength": 2048,
+            "minLength": 5,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Cover"
+            }
+          },
+          "output": {
+            "title": "String",
+            "maxLength": 512,
+            "minLength": 5,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Output"
+            }
+          },
+          "outputType": {
+            "title": "String",
+            "maxLength": 20,
+            "minLength": 0,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "OutputType"
+            }
+          },
+          "snapshotId": {
+            "title": "String",
+            "maxLength": 40,
+            "minLength": 0,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "SnapshotId"
+            }
+          }
+        },
+        "xml": {
+          "name": "Files"
+        }
+      },
+      "OrderItemFileListOut": {
+        "title": "out:Files",
+        "required": [
+          "content"
+        ],
+        "type": "object",
+        "properties": {
+          "content": {
+            "$ref": "#/components/schemas/OrderItemFileListEntryOut"
+          },
+          "cover": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/OrderItemFileListEntryOut"
+              }
+            ]
+          }
+        },
+        "xml": {
+          "name": "Files"
+        }
+      },
+      "OrderItemIn": {
+        "title": "in:Item",
+        "required": [
+          "productId"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "String",
+            "maxLength": 36,
+            "minLength": 0,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Id"
+            }
+          },
+          "productId": {
+            "title": "String",
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string",
+            "xml": {
+              "name": "ProductId"
+            }
+          },
+          "title": {
+            "title": "String",
+            "maxLength": 64,
+            "minLength": 0,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Title"
+            }
+          },
+          "pageCount": {
+            "title": "Nullable`1",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "PageCount"
+            }
+          },
+          "quantity": {
+            "title": "Int32",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "Quantity"
+            }
+          },
+          "files": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/OrderItemFileListIn"
+              }
+            ]
+          },
+          "options": {
+            "title": "OrderItemOptionBM[]",
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/OrderItemOptionIn"
+            },
+            "xml": {
+              "name": "Options"
+            }
+          },
+          "retail": {
+            "title": "Nullable`1",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "null",
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "Retail"
+            }
+          },
+          "retailPrice": {
+            "title": "Nullable`1",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "null",
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "RetailPrice"
+            }
+          },
+          "metadata": {
+            "title": "String",
+            "maxLength": 1024,
+            "minLength": 0,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Metadata"
+            }
+          }
+        },
+        "xml": {
+          "name": "Item"
+        }
+      },
+      "OrderItemOptionIn": {
+        "title": "in:Option",
+        "required": [
+          "id",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "String",
+            "maxLength": 32,
+            "minLength": 1,
+            "type": "string",
+            "xml": {
+              "name": "Id"
+            }
+          },
+          "value": {
+            "title": "String",
+            "maxLength": 32,
+            "minLength": 1,
+            "type": "string",
+            "xml": {
+              "name": "Value"
+            }
+          }
+        },
+        "xml": {
+          "name": "Option"
+        }
+      },
+      "OrderItemOptionOut": {
+        "title": "out:Option",
+        "required": [
+          "id",
+          "value",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Id"
+            }
+          },
+          "value": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Value"
+            }
+          },
+          "name": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Name"
+            }
+          }
+        },
+        "xml": {
+          "name": "Option"
+        }
+      },
+      "OrderItemOut": {
+        "title": "out:Item",
+        "required": [
+          "id",
+          "productId",
+          "files",
+          "options"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Id"
+            }
+          },
+          "productId": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "ProductId"
+            }
+          },
+          "title": {
+            "title": "String",
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Title"
+            }
+          },
+          "pageCount": {
+            "title": "Int32",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "PageCount"
+            }
+          },
+          "quantity": {
+            "title": "Int32",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "Quantity"
+            }
+          },
+          "retail": {
+            "title": "Nullable`1",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "null",
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "Retail"
+            }
+          },
+          "files": {
+            "$ref": "#/components/schemas/OrderItemFileListOut"
+          },
+          "options": {
+            "title": "OrderItemOptionVM[]",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItemOptionOut"
+            },
+            "xml": {
+              "name": "Options"
+            }
+          },
+          "metadata": {
+            "title": "String",
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Metadata"
+            }
+          }
+        },
+        "xml": {
+          "name": "Item"
+        }
+      },
+      "OrderListEntryOut": {
+        "title": "out:OrderSummary",
+        "required": [
+          "id",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Id"
+            }
+          },
+          "dateTime": {
+            "$ref": "#/components/schemas/FixedFormatDateTime"
+          },
+          "email": {
+            "title": "String",
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Email"
+            }
+          },
+          "username": {
+            "title": "String",
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Username"
+            }
+          },
+          "status": {
+            "$ref": "#/components/schemas/OrderStatus"
+          },
+          "url": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Url"
+            }
+          }
+        },
+        "xml": {
+          "name": "Order"
+        }
+      },
+      "OrderListOut": {
+        "title": "out:Orders",
+        "required": [
+          "results"
+        ],
+        "type": "object",
+        "properties": {
+          "count": {
+            "title": "Int32",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "Count"
+            }
+          },
+          "offset": {
+            "title": "Int32",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "Offset"
+            }
+          },
+          "limit": {
+            "title": "Int32",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "Limit"
+            }
+          },
+          "results": {
+            "title": "OrderListEntryVM[]",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderListEntryOut"
+            },
+            "xml": {
+              "name": "Results"
+            }
+          }
+        },
+        "xml": {
+          "name": "Query"
+        }
+      },
+      "OrderOut": {
+        "title": "out:Order",
+        "required": [
+          "id",
+          "dateTime",
+          "status",
+          "productionSpeed",
+          "items",
+          "shipping",
+          "invoice",
+          "invoicingState"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Id"
+            }
+          },
+          "dateTime": {
+            "$ref": "#/components/schemas/FixedFormatDateTime"
+          },
+          "status": {
+            "$ref": "#/components/schemas/OrderStatus"
+          },
+          "trackingUrl": {
+            "title": "String",
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "TrackingUrl"
+            }
+          },
+          "email": {
+            "title": "String",
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Email"
+            }
+          },
+          "username": {
+            "title": "String",
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Username"
+            }
+          },
+          "productionSpeed": {
+            "$ref": "#/components/schemas/ProductionSpeed"
+          },
+          "checkout": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/CheckoutOut"
+              }
+            ]
+          },
+          "items": {
+            "title": "OrderItemVM[]",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItemOut"
+            },
+            "xml": {
+              "name": "Items"
+            }
+          },
+          "metadata": {
+            "title": "String",
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "Metadata"
+            }
+          },
+          "shipping": {
+            "$ref": "#/components/schemas/ShippingOut"
+          },
+          "invoice": {
+            "$ref": "#/components/schemas/InvoiceOut"
+          },
+          "invoicingState": {
+            "$ref": "#/components/schemas/InvoicingState"
+          }
+        },
+        "xml": {
+          "name": "Order"
+        }
+      },
+      "OrderStatus": {
+        "title": "OrderStatus",
+        "enum": [
+          "Created",
+          "Processing",
+          "Shipped",
+          "Cancelled"
+        ],
+        "type": "string",
+        "xml": {
+          "name": "Status"
+        }
+      },
+      "OrderStatusOut": {
+        "title": "out:Status",
+        "type": "object",
+        "properties": {
+          "order": {
+            "$ref": "#/components/schemas/OrderStatus"
+          },
+          "payment": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/PaymentStatus"
+              }
+            ]
+          }
+        },
+        "xml": {
+          "name": "Status"
+        }
+      },
+      "OrderStatusUpdateListEntryOut": {
+        "title": "out:StatusUpdate",
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Id"
+            }
+          },
+          "status": {
+            "$ref": "#/components/schemas/OrderStatus"
+          },
+          "dateTime": {
+            "$ref": "#/components/schemas/FixedFormatDateTime"
+          }
+        },
+        "xml": {
+          "name": "StatusUpdate"
+        }
+      },
+      "OrderStatusUpdateListOut": {
+        "title": "out:StatusUpdates",
+        "required": [
+          "results"
+        ],
+        "type": "object",
+        "properties": {
+          "since": {
+            "$ref": "#/components/schemas/FixedFormatDateTime"
+          },
+          "results": {
+            "title": "OrderStatusUpdateListEntryVM[]",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderStatusUpdateListEntryOut"
+            },
+            "xml": {
+              "name": "Results"
+            }
+          }
+        },
+        "xml": {
+          "name": "Query"
+        }
+      },
+      "PaymentStatus": {
+        "title": "PaymentStatus",
+        "enum": [
+          "Open",
+          "Failed",
+          "Successful",
+          "Cancelled"
+        ],
+        "type": "string",
+        "xml": {
+          "name": "Status"
+        }
+      },
+      "PriceOut": {
+        "title": "out:Price",
+        "type": "object",
+        "properties": {
+          "base": {
+            "title": "Decimal",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "Base"
+            }
+          },
+          "perExtraPage": {
+            "title": "Decimal",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "PerExtraPage"
+            }
+          }
+        },
+        "xml": {
+          "name": "Cost"
+        }
+      },
+      "ProductFileOut": {
+        "title": "out:ProductFile",
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Id"
+            }
+          },
+          "height": {
+            "title": "Decimal",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "Height"
+            }
+          },
+          "width": {
+            "title": "Decimal",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "Width"
+            }
+          },
+          "bleed": {
+            "title": "Decimal",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "Bleed"
+            }
+          },
+          "accepts": {
+            "title": "FileType[]",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FileType"
+            },
+            "xml": {
+              "name": "Accepts"
+            }
+          }
+        },
+        "xml": {
+          "name": "File"
+        }
+      },
+      "ProductionSpeed": {
+        "title": "ProductionSpeed",
+        "enum": [
+          "Standard",
+          "Express"
+        ],
+        "type": "string",
+        "xml": {
+          "name": "ProductionSpeed"
+        }
+      },
+      "ProductionTimeOut": {
+        "title": "out:ProductionTime",
+        "type": "object",
+        "properties": {
+          "speed": {
+            "$ref": "#/components/schemas/ProductionSpeed"
+          },
+          "days": {
+            "title": "Int32",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "Days"
+            }
+          },
+          "limitHour": {
+            "title": "Int32",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "LimitHour"
+            }
+          }
+        },
+        "xml": {
+          "name": "ProductionTime"
+        }
+      },
+      "ProductListEntryOut": {
+        "title": "out:ProductSummary",
+        "required": [
+          "id",
+          "name",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Id"
+            }
+          },
+          "name": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Name"
+            }
+          },
+          "url": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Url"
+            }
+          }
+        },
+        "xml": {
+          "name": "Product"
+        }
+      },
+      "ProductListOut": {
+        "title": "out:Products",
+        "required": [
+          "results"
+        ],
+        "type": "object",
+        "properties": {
+          "count": {
+            "title": "Int32",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "Count"
+            }
+          },
+          "offset": {
+            "title": "Int32",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "Offset"
+            }
+          },
+          "limit": {
+            "title": "Int32",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "Limit"
+            }
+          },
+          "results": {
+            "title": "ProductListEntryVM[]",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductListEntryOut"
+            },
+            "xml": {
+              "name": "Results",
+              "wrapped": true
+            }
+          }
+        },
+        "xml": {
+          "name": "Query"
+        }
+      },
+      "ProductOptionChoiceOut": {
+        "title": "out:ProductOptionChoice",
+        "required": [
+          "value",
+          "name",
+          "cost"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Value"
+            }
+          },
+          "name": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Name"
+            }
+          },
+          "cost": {
+            "$ref": "#/components/schemas/PriceOut"
+          },
+          "checkout": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/PriceOut"
+              }
+            ]
+          }
+        },
+        "xml": {
+          "name": "Choice"
+        }
+      },
+      "ProductOptionOut": {
+        "title": "out:ProductOption",
+        "required": [
+          "id",
+          "default",
+          "label"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Id"
+            }
+          },
+          "default": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Default"
+            }
+          },
+          "label": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Label"
+            }
+          },
+          "choices": {
+            "title": "ProductOptionChoiceVM[]",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductOptionChoiceOut"
+            },
+            "xml": {
+              "name": "Choices"
+            }
+          }
+        },
+        "xml": {
+          "name": "ProductOption"
+        }
+      },
+      "ProductOut": {
+        "title": "out:Product",
+        "required": [
+          "id",
+          "name",
+          "category",
+          "cost"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Id"
+            }
+          },
+          "name": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Name"
+            }
+          },
+          "category": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Category"
+            }
+          },
+          "taxRate": {
+            "title": "Decimal",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "TaxRate"
+            }
+          },
+          "cost": {
+            "$ref": "#/components/schemas/PriceOut"
+          },
+          "checkout": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/PriceOut"
+              }
+            ]
+          },
+          "minQuantity": {
+            "title": "Int32",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "MinQuantity"
+            }
+          },
+          "maxQuantity": {
+            "title": "Int32",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "MaxQuantity"
+            }
+          },
+          "hasVariablePageCount": {
+            "title": "Boolean",
+            "type": "boolean",
+            "xml": {
+              "name": "HasVariablePageCount"
+            }
+          },
+          "fixedPageCount": {
+            "title": "Nullable`1",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "FixedPageCount"
+            }
+          },
+          "minPageCount": {
+            "title": "Int32",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "MinPageCount"
+            }
+          },
+          "maxPageCount": {
+            "title": "Int32",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "MaxPageCount"
+            }
+          },
+          "pageCountIncrement": {
+            "title": "Nullable`1",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "PageCountIncrement"
+            }
+          },
+          "paperThickness": {
+            "title": "Nullable`1",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "null",
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "PaperThickness"
+            }
+          },
+          "options": {
+            "title": "ProductOptionVM[]",
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/ProductOptionOut"
+            },
+            "xml": {
+              "name": "Options"
+            }
+          },
+          "files": {
+            "title": "ProductFileVM[]",
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/ProductFileOut"
+            },
+            "xml": {
+              "name": "Files"
+            }
+          },
+          "productionTimeInDays": {
+            "title": "Nullable`1",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "ProductionTimeInDays"
+            }
+          },
+          "productionTimes": {
+            "title": "ProductionTimeVM[]",
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/ProductionTimeOut"
+            },
+            "xml": {
+              "name": "ProductionTimes"
+            }
+          },
+          "quantityDiscounts": {
+            "$comment": "Contact us for details",
+            "title": "QuantityDiscountVM[]",
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/QuantityDiscountOut"
+            },
+            "xml": {
+              "name": "QuantityDiscounts"
+            }
+          }
+        },
+        "xml": {
+          "name": "Product"
+        }
+      },
+      "ProductWithDetailsListOut": {
+        "title": "out:ProductsWithDetails",
+        "required": [
+          "results"
+        ],
+        "type": "object",
+        "properties": {
+          "count": {
+            "title": "Int32",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "Count"
+            }
+          },
+          "offset": {
+            "title": "Int32",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "Offset"
+            }
+          },
+          "limit": {
+            "title": "Int32",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "Limit"
+            }
+          },
+          "results": {
+            "title": "ProductVM[]",
+            "type": "array",
+            "items": {
+              "title": "out:Product",
+              "required": [
+                "id",
+                "name",
+                "category",
+                "cost"
+              ],
+              "type": "object",
+              "properties": {
+                "id": {
+                  "title": "String",
+                  "type": "string",
+                  "xml": {
+                    "name": "Id"
+                  }
+                },
+                "name": {
+                  "title": "String",
+                  "type": "string",
+                  "xml": {
+                    "name": "Name"
+                  }
+                },
+                "category": {
+                  "title": "String",
+                  "type": "string",
+                  "xml": {
+                    "name": "Category"
+                  }
+                },
+                "taxRate": {
+                  "title": "Decimal",
+                  "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                  "type": [
+                    "number",
+                    "string"
+                  ],
+                  "format": "double",
+                  "xml": {
+                    "name": "TaxRate"
+                  }
+                },
+                "cost": {
+                  "title": "out:Price",
+                  "type": "object",
+                  "properties": {
+                    "base": {
+                      "title": "Decimal",
+                      "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                      "type": [
+                        "number",
+                        "string"
+                      ],
+                      "format": "double",
+                      "xml": {
+                        "name": "Base"
+                      }
+                    },
+                    "perExtraPage": {
+                      "title": "Decimal",
+                      "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                      "type": [
+                        "number",
+                        "string"
+                      ],
+                      "format": "double",
+                      "xml": {
+                        "name": "PerExtraPage"
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "Cost"
+                  }
+                },
+                "checkout": {
+                  "title": "out:Price",
+                  "type": "object",
+                  "properties": {
+                    "base": {
+                      "title": "Decimal",
+                      "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                      "type": [
+                        "number",
+                        "string"
+                      ],
+                      "format": "double",
+                      "xml": {
+                        "name": "Base"
+                      }
+                    },
+                    "perExtraPage": {
+                      "title": "Decimal",
+                      "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                      "type": [
+                        "number",
+                        "string"
+                      ],
+                      "format": "double",
+                      "xml": {
+                        "name": "PerExtraPage"
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "Checkout"
+                  }
+                },
+                "minQuantity": {
+                  "title": "Int32",
+                  "pattern": "^-?(?:0|[1-9]\\d*)$",
+                  "type": [
+                    "integer",
+                    "string"
+                  ],
+                  "format": "int32",
+                  "xml": {
+                    "name": "MinQuantity"
+                  }
+                },
+                "maxQuantity": {
+                  "title": "Int32",
+                  "pattern": "^-?(?:0|[1-9]\\d*)$",
+                  "type": [
+                    "integer",
+                    "string"
+                  ],
+                  "format": "int32",
+                  "xml": {
+                    "name": "MaxQuantity"
+                  }
+                },
+                "hasVariablePageCount": {
+                  "title": "Boolean",
+                  "type": "boolean",
+                  "xml": {
+                    "name": "HasVariablePageCount"
+                  }
+                },
+                "fixedPageCount": {
+                  "title": "Nullable`1",
+                  "pattern": "^-?(?:0|[1-9]\\d*)$",
+                  "type": [
+                    "null",
+                    "integer",
+                    "string"
+                  ],
+                  "format": "int32",
+                  "xml": {
+                    "name": "FixedPageCount"
+                  }
+                },
+                "minPageCount": {
+                  "title": "Int32",
+                  "pattern": "^-?(?:0|[1-9]\\d*)$",
+                  "type": [
+                    "integer",
+                    "string"
+                  ],
+                  "format": "int32",
+                  "xml": {
+                    "name": "MinPageCount"
+                  }
+                },
+                "maxPageCount": {
+                  "title": "Int32",
+                  "pattern": "^-?(?:0|[1-9]\\d*)$",
+                  "type": [
+                    "integer",
+                    "string"
+                  ],
+                  "format": "int32",
+                  "xml": {
+                    "name": "MaxPageCount"
+                  }
+                },
+                "pageCountIncrement": {
+                  "title": "Nullable`1",
+                  "pattern": "^-?(?:0|[1-9]\\d*)$",
+                  "type": [
+                    "null",
+                    "integer",
+                    "string"
+                  ],
+                  "format": "int32",
+                  "xml": {
+                    "name": "PageCountIncrement"
+                  }
+                },
+                "paperThickness": {
+                  "title": "Nullable`1",
+                  "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                  "type": [
+                    "null",
+                    "number",
+                    "string"
+                  ],
+                  "format": "double",
+                  "xml": {
+                    "name": "PaperThickness"
+                  }
+                },
+                "options": {
+                  "title": "ProductOptionVM[]",
+                  "type": [
+                    "null",
+                    "array"
+                  ],
+                  "items": {
+                    "title": "out:ProductOption",
+                    "required": [
+                      "id",
+                      "default",
+                      "label"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "title": "String",
+                        "type": "string",
+                        "xml": {
+                          "name": "Id"
+                        }
+                      },
+                      "default": {
+                        "title": "String",
+                        "type": "string",
+                        "xml": {
+                          "name": "Default"
+                        }
+                      },
+                      "label": {
+                        "title": "String",
+                        "type": "string",
+                        "xml": {
+                          "name": "Label"
+                        }
+                      },
+                      "choices": {
+                        "title": "ProductOptionChoiceVM[]",
+                        "type": "array",
+                        "items": {
+                          "title": "out:ProductOptionChoice",
+                          "required": [
+                            "value",
+                            "name",
+                            "cost"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "value": {
+                              "title": "String",
+                              "type": "string",
+                              "xml": {
+                                "name": "Value"
+                              }
+                            },
+                            "name": {
+                              "title": "String",
+                              "type": "string",
+                              "xml": {
+                                "name": "Name"
+                              }
+                            },
+                            "cost": {
+                              "title": "out:Price",
+                              "type": "object",
+                              "properties": {
+                                "base": {
+                                  "title": "Decimal",
+                                  "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                                  "type": [
+                                    "number",
+                                    "string"
+                                  ],
+                                  "format": "double",
+                                  "xml": {
+                                    "name": "Base"
+                                  }
+                                },
+                                "perExtraPage": {
+                                  "title": "Decimal",
+                                  "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                                  "type": [
+                                    "number",
+                                    "string"
+                                  ],
+                                  "format": "double",
+                                  "xml": {
+                                    "name": "PerExtraPage"
+                                  }
+                                }
+                              },
+                              "xml": {
+                                "name": "Cost"
+                              }
+                            },
+                            "checkout": {
+                              "title": "out:Price",
+                              "type": "object",
+                              "properties": {
+                                "base": {
+                                  "title": "Decimal",
+                                  "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                                  "type": [
+                                    "number",
+                                    "string"
+                                  ],
+                                  "format": "double",
+                                  "xml": {
+                                    "name": "Base"
+                                  }
+                                },
+                                "perExtraPage": {
+                                  "title": "Decimal",
+                                  "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                                  "type": [
+                                    "number",
+                                    "string"
+                                  ],
+                                  "format": "double",
+                                  "xml": {
+                                    "name": "PerExtraPage"
+                                  }
+                                }
+                              },
+                              "xml": {
+                                "name": "Checkout"
+                              }
+                            }
+                          },
+                          "xml": {
+                            "name": "Choice"
+                          }
+                        },
+                        "xml": {
+                          "name": "Choices"
+                        }
+                      }
+                    },
+                    "xml": {
+                      "name": "ProductOption"
+                    }
+                  },
+                  "xml": {
+                    "name": "Options"
+                  }
+                },
+                "files": {
+                  "title": "ProductFileVM[]",
+                  "type": [
+                    "null",
+                    "array"
+                  ],
+                  "items": {
+                    "title": "out:ProductFile",
+                    "required": [
+                      "id"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "title": "String",
+                        "type": "string",
+                        "xml": {
+                          "name": "Id"
+                        }
+                      },
+                      "height": {
+                        "title": "Decimal",
+                        "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                        "type": [
+                          "number",
+                          "string"
+                        ],
+                        "format": "double",
+                        "xml": {
+                          "name": "Height"
+                        }
+                      },
+                      "width": {
+                        "title": "Decimal",
+                        "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                        "type": [
+                          "number",
+                          "string"
+                        ],
+                        "format": "double",
+                        "xml": {
+                          "name": "Width"
+                        }
+                      },
+                      "bleed": {
+                        "title": "Decimal",
+                        "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                        "type": [
+                          "number",
+                          "string"
+                        ],
+                        "format": "double",
+                        "xml": {
+                          "name": "Bleed"
+                        }
+                      },
+                      "accepts": {
+                        "title": "FileType[]",
+                        "type": "array",
+                        "items": {
+                          "title": "FileType",
+                          "enum": [
+                            "Unknown",
+                            "PDF",
+                            "JPEG",
+                            "PNG"
+                          ],
+                          "type": "string",
+                          "xml": {
+                            "name": "FileType"
+                          }
+                        },
+                        "xml": {
+                          "name": "Accepts"
+                        }
+                      }
+                    },
+                    "xml": {
+                      "name": "File"
+                    }
+                  },
+                  "xml": {
+                    "name": "Files"
+                  }
+                },
+                "productionTimeInDays": {
+                  "title": "Nullable`1",
+                  "pattern": "^-?(?:0|[1-9]\\d*)$",
+                  "type": [
+                    "null",
+                    "integer",
+                    "string"
+                  ],
+                  "format": "int32",
+                  "xml": {
+                    "name": "ProductionTimeInDays"
+                  }
+                },
+                "productionTimes": {
+                  "title": "ProductionTimeVM[]",
+                  "type": [
+                    "null",
+                    "array"
+                  ],
+                  "items": {
+                    "title": "out:ProductionTime",
+                    "type": "object",
+                    "properties": {
+                      "speed": {
+                        "title": "ProductionSpeed",
+                        "enum": [
+                          "Standard",
+                          "Express"
+                        ],
+                        "type": "string",
+                        "xml": {
+                          "name": "Speed"
+                        }
+                      },
+                      "days": {
+                        "title": "Int32",
+                        "pattern": "^-?(?:0|[1-9]\\d*)$",
+                        "type": [
+                          "integer",
+                          "string"
+                        ],
+                        "format": "int32",
+                        "xml": {
+                          "name": "Days"
+                        }
+                      },
+                      "limitHour": {
+                        "title": "Int32",
+                        "pattern": "^-?(?:0|[1-9]\\d*)$",
+                        "type": [
+                          "integer",
+                          "string"
+                        ],
+                        "format": "int32",
+                        "xml": {
+                          "name": "LimitHour"
+                        }
+                      }
+                    },
+                    "xml": {
+                      "name": "ProductionTime"
+                    }
+                  },
+                  "xml": {
+                    "name": "ProductionTimes"
+                  }
+                },
+                "quantityDiscounts": {
+                  "$comment": "Contact us for details",
+                  "title": "QuantityDiscountVM[]",
+                  "type": [
+                    "null",
+                    "array"
+                  ],
+                  "items": {
+                    "title": "out:QuantityDiscount",
+                    "type": "object",
+                    "properties": {
+                      "quantity": {
+                        "title": "Int32",
+                        "pattern": "^-?(?:0|[1-9]\\d*)$",
+                        "type": [
+                          "integer",
+                          "string"
+                        ],
+                        "format": "int32",
+                        "xml": {
+                          "name": "Quantity"
+                        }
+                      },
+                      "percentage": {
+                        "title": "Decimal",
+                        "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                        "type": [
+                          "number",
+                          "string"
+                        ],
+                        "format": "double",
+                        "xml": {
+                          "name": "Percentage"
+                        }
+                      }
+                    },
+                    "xml": {
+                      "name": "QuantityDiscount"
+                    }
+                  },
+                  "xml": {
+                    "name": "QuantityDiscounts"
+                  }
+                }
+              },
+              "xml": {
+                "name": "Product"
+              }
+            },
+            "xml": {
+              "name": "Results",
+              "wrapped": true
+            }
+          }
+        },
+        "xml": {
+          "name": "Query"
+        }
+      },
+      "QuantityDiscountOut": {
+        "title": "out:QuantityDiscount",
+        "type": "object",
+        "properties": {
+          "quantity": {
+            "title": "Int32",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "Quantity"
+            }
+          },
+          "percentage": {
+            "title": "Decimal",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "Percentage"
+            }
+          }
+        },
+        "xml": {
+          "name": "QuantityDiscount"
+        }
+      },
+      "ShipmentIn": {
+        "title": "in:Shipment",
+        "required": [
+          "country"
+        ],
+        "type": "object",
+        "properties": {
+          "state": {
+            "title": "String",
+            "maxLength": 3,
+            "minLength": 0,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "State"
+            }
+          },
+          "country": {
+            "$ref": "#/components/schemas/Country"
+          },
+          "preference": {
+            "$ref": "#/components/schemas/ShippingPreference"
+          },
+          "items": {
+            "title": "ShipmentItemBM[]",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShipmentItemIn"
+            },
+            "xml": {
+              "name": "Items"
+            }
+          }
+        },
+        "xml": {
+          "name": "Shipment"
+        }
+      },
+      "ShipmentItemIn": {
+        "title": "in:Shipment.Item",
+        "required": [
+          "productId"
+        ],
+        "type": "object",
+        "properties": {
+          "productId": {
+            "title": "String",
+            "maxLength": 100,
+            "minLength": 1,
+            "type": [
+              "null",
+              "string"
+            ],
+            "xml": {
+              "name": "ProductId"
+            }
+          },
+          "pageCount": {
+            "title": "Nullable`1",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "PageCount"
+            }
+          },
+          "quantity": {
+            "title": "Int32",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32",
+            "xml": {
+              "name": "Quantity"
+            }
+          }
+        },
+        "xml": {
+          "name": "Item"
+        }
+      },
+      "ShippingIn": {
+        "title": "in:Shipping",
+        "type": "object",
+        "properties": {
+          "preference": {
+            "$ref": "#/components/schemas/ShippingPreference"
+          },
+          "address": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/AddressIn"
+              }
+            ]
+          }
+        },
+        "xml": {
+          "name": "Shipping"
+        }
+      },
+      "ShippingMethodOut": {
+        "title": "out:ShippingMethod",
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "Name"
+            }
+          },
+          "isTrackable": {
+            "title": "Boolean",
+            "type": "boolean",
+            "xml": {
+              "name": "IsTrackable"
+            }
+          }
+        },
+        "xml": {
+          "name": "Method"
+        }
+      },
+      "ShippingOut": {
+        "title": "out:Shipping",
+        "required": [
+          "method",
+          "address"
+        ],
+        "type": "object",
+        "properties": {
+          "method": {
+            "$ref": "#/components/schemas/ShippingMethodOut"
+          },
+          "address": {
+            "$ref": "#/components/schemas/AddressOut"
+          }
+        },
+        "xml": {
+          "name": "Shipping"
+        }
+      },
+      "ShippingPreference": {
+        "title": "ShippingPreference",
+        "enum": [
+          "Auto",
+          "Tracked"
+        ],
+        "type": "string",
+        "xml": {
+          "name": "Preference"
+        }
+      },
+      "ShippingQuoteOut": {
+        "title": "out:Shipping.Quote",
+        "required": [
+          "method"
+        ],
+        "type": "object",
+        "properties": {
+          "shipping": {
+            "title": "Decimal",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "Shipping"
+            }
+          },
+          "handling": {
+            "title": "Decimal",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "Handling"
+            }
+          },
+          "taxRate": {
+            "title": "Decimal",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "TaxRate"
+            }
+          },
+          "payment": {
+            "$comment": "Payment screen only",
+            "title": "Decimal",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double",
+            "xml": {
+              "name": "Payment"
+            }
+          },
+          "method": {
+            "$ref": "#/components/schemas/ShippingMethodOut"
+          }
+        },
+        "xml": {
+          "name": "Quote"
+        }
+      },
+      "UploadResultOut": {
+        "title": "UploadResult",
+        "required": [
+          "fileName"
+        ],
+        "type": "object",
+        "properties": {
+          "fileName": {
+            "title": "String",
+            "type": "string",
+            "xml": {
+              "name": "FileName"
+            }
+          },
+          "fileType": {
+            "$ref": "#/components/schemas/FileType"
+          }
+        },
+        "xml": {
+          "name": "UploadResult"
+        }
+      }
+    },
+    "securitySchemes": {
+      "OAuth2Token": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "v2/oauth?version=2",
+            "scopes": {
+              "orders:browse": "Enable browsing of orders.",
+              "orders:place": "Enable placing of orders.",
+              "orders:track": "Enable tracking of orders.",
+              "orders:cancel": "Enable cancelling of orders.",
+              "products:browse": "Enable browsing of products.",
+              "shipping:quote": "Enable getting shipping quotes.",
+              "coupons:quote": "Enable getting quotes for a coupon code.",
+              "files:upload": "Enable uploading of files."
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Checkout",
+      "description": "Endpoints that optionally let you utilize the Print API payment screen. This is helpful if you don't have a payment system set up: simply redirect your customer to a payment link provided by Print API. Prices can be configured per product from your Print API account."
+    },
+    {
+      "name": "Coupons"
+    },
+    {
+      "name": "Orders",
+      "description": "Endpoints that let you submit and retrieve orders. When you successfully submit an order, it will also show up in the orders overview in your Print API account. That overview also offers features useful for development, such as simulated status updates. So be sure to check it out!"
+    },
+    {
+      "name": "Products",
+      "description": "Endpoints that let you retrieve product information. These are intended for syncing Print API product data to your own database. Product specifications, such as print file dimensions and customization options, will not be changed without prior notice."
+    },
+    {
+      "name": "Shipping",
+      "description": "Endpoints that let you retrieve shipping and handling costs. Shipping costs are supplied by our shipping partners: they depend on the weight, dimensions and destination country of the order. Handling costs range from € 0,40 up to € 1,50 depending on the size of the order."
+    },
+    {
+      "name": "Uploads",
+      "description": "Endpoints that let you upload print files. Print API supports two ways to supply print files: as a download URL, or via an HTTP POST. If you opt for the latter, the print files must be posted to this resource after an order is submitted."
+    }
+  ]
+}
