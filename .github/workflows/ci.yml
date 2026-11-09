@@ -18,3 +18,23 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run check
+  package-managers:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - manager: bun
+            tool: bun@1.4.4
+          - manager: pnpm
+            tool: pnpm@12.18.0
+          - manager: yarn
+            tool: yarn@1.22.22
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm exec --yes --package=${{ matrix.tool }} -- node scripts/test-package.mjs --manager=${{ matrix.manager }}

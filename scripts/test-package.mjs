@@ -2,13 +2,22 @@ import { mkdtemp, readFile, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { execFileSync } from 'node:child_process';
+const manager = process.argv.find(arg => arg.startsWith('--manager='))?.split('=')[1] ?? 'npm';
+if (!['npm', 'pnpm', 'yarn', 'bun'].includes(manager)) throw new Error('Unsupported package manager');
 const root = resolve(import.meta.dirname, '..');
 const fixture = await mkdtemp(join(tmpdir(), 'printapi-package-'));
-const run = (command, args, cwd = fixture) => execFileSync(command, args, { cwd, stdio: 'pipe', encoding: 'utf8' });
+const run = (command, args, cwd = fixture) => execFileSync(command, args, { cwd, stdio: 'pipe', encoding: 'utf8', env: { ...process.env, npm_config_dry_run: 'false' } });
 try {
   const packed = JSON.parse(run('npm', ['pack', '--ignore-scripts', '--json', '--pack-destination', fixture], root))[0];
   await writeFile(join(fixture, 'package.json'), JSON.stringify({ private: true, type: 'module' }));
-  run('npm', ['install', '--ignore-scripts', '--no-audit', '--no-fund', join(fixture, packed.filename)]);
+  const tarball = join(fixture, packed.filename);
+  const install = {
+    npm: ['install', '--ignore-scripts', '--no-audit', '--no-fund', tarball],
+    pnpm: ['add', '--ignore-scripts', tarball],
+    yarn: ['add', '--ignore-scripts', '--non-interactive', tarball],
+    bun: ['add', '--ignore-scripts', tarball],
+  };
+  run(manager, install[manager]);
   const common = `
 const assert = (await import('node:assert/strict')).default;
 const client = new sdk.PrintAPI({ accessToken: 'test', fetch: async (url, init) => {
@@ -17,11 +26,29 @@ const client = new sdk.PrintAPI({ accessToken: 'test', fetch: async (url, init) 
   return new Response(JSON.stringify({ results: [] }));
 }});
 assert.deepEqual(await client.products.list(), { results: [] });
+let exchanges = 0;
+const authenticated = new sdk.PrintAPI({ credentials: { clientId: 'id', clientSecret: 'secret' }, fetch: async (url, init) => {
+  if (String(url).includes('/oauth')) {
+    exchanges++;
+    assert.equal(init.body.get('grant_type'), 'client_credentials');
+    return new Response(JSON.stringify({ access_token: 'oauth-token', expires_in: 3600 }));
+  }
+  assert.equal(new Headers(init.headers).get('authorization'), 'Bearer oauth-token');
+  if (String(url).includes('/files/')) {
+    assert.equal(await init.body.get('file').text(), 'pdf bytes');
+    return new Response(JSON.stringify({ fileName: 'print.pdf' }));
+  }
+  return new Response(JSON.stringify({ results: [] }));
+}});
+await Promise.all([authenticated.orders.list(), authenticated.products.list()]);
+assert.equal(exchanges, 1);
+assert.deepEqual(await authenticated.files.upload('code', { file: new Blob(['pdf bytes']), filename: 'print.pdf' }), { fileName: 'print.pdf' });
 `;
   await writeFile(join(fixture, 'esm.mjs'), `import * as sdk from 'printapi-sdk';\n${common}`);
   await writeFile(join(fixture, 'cjs.cjs'), `const sdk = require('printapi-sdk');\n(async () => {${common}})().catch(error => {console.error(error); process.exitCode = 1;});`);
-  run('node', ['esm.mjs']);
-  run('node', ['cjs.cjs']);
+  const runtime = manager === 'bun' ? 'bun' : 'node';
+  run(runtime, ['esm.mjs']);
+  run(runtime, ['cjs.cjs']);
   const types = `
 import { PrintAPI, type OrderIn, type Country } from 'printapi-sdk';
 const client = new PrintAPI({ accessToken: 'token' });
@@ -43,7 +70,7 @@ const invalidOrder: OrderIn = {};
   }
   const manifest = JSON.parse(await readFile(join(fixture, 'node_modules/printapi-sdk/package.json'), 'utf8'));
   if (Object.keys(manifest.dependencies ?? {}).length) throw new Error('Unexpected runtime dependencies');
-  console.log('Packed SDK passes ESM, CommonJS, NodeNext and bundler consumer checks.');
+  console.log(`Packed SDK installed with ${manager} passes ESM, CommonJS, OAuth, uploads, NodeNext and bundler consumer checks.`);
 } catch (error) {
   if (error.stdout) console.error(error.stdout);
   if (error.stderr) console.error(error.stderr);

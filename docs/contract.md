@@ -20,6 +20,6 @@ The orders and products list schemas expose count, offset, limit and results. It
 
 ## Verification limits
 
-Transport tests use injected fetch responses. ESM/CommonJS execution and NodeNext/bundler TypeScript consumers are checked against an installed npm tarball. No credentials were available or required, so OAuth acceptance, account-specific products, server pagination and order fulfillment have not been verified against a credentialed sandbox. No live orders were sent. Browser use is disabled by default; Bun, Deno, Workers and React Native are not claimed as tested platforms.
+Transport tests use injected fetch responses. ESM/CommonJS execution and NodeNext/bundler TypeScript consumers are checked against an installed npm tarball. No credentials were available or required, so OAuth acceptance, account-specific products, server pagination and order fulfillment have not been verified against a credentialed sandbox. No live orders were sent. Packed-package installation, ESM/CommonJS execution, OAuth and multipart uploads are also tested with Bun 1.4.4. Browser use is disabled by default; Deno, Workers and React Native are not claimed as tested platforms.
 
 A snapshot can match the current published contract, but cannot guarantee future service changes or undocumented behavior. Run `npm run spec:check` to compare with upstream, or update the snapshot and regenerate types together. The scheduled CI workflow checks weekly.

@@ -24,7 +24,8 @@
     "dist",
     "openapi/printapi-v2.json",
     "README.md",
-    "docs"
+    "docs",
+    "CHANGELOG.md"
   ],
   "engines": {
     "node": ">=22.18.0"
@@ -48,7 +49,7 @@
     "typescript": "5.9.3",
     "vitest": "5.1.0"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DapperMickie/printapi-typescript.git"
@@ -56,5 +57,17 @@
   "homepage": "https://github.com/DapperMickie/printapi-typescript#readme",
   "bugs": {
     "url": "https://github.com/DapperMickie/printapi-typescript/issues"
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "keywords": [
+    "printapi",
+    "sdk",
+    "typescript",
+    "printing",
+    "web-to-print",
+    "bun"
+  ]
 }

@@ -3,3 +3,6 @@ dist/
 coverage/
 *.tgz
 .env*
+
+.npmrc
+npm-debug.log*

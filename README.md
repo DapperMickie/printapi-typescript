@@ -2,11 +2,22 @@
 
 A server-side TypeScript SDK for [PrintAPI v2](https://test.printapi.nl/v2/swagger/index.html). Covers all **14 operations and 59 component schemas** in the OpenAPI document retrieved on 2026-11-09. This is an independent SDK, not an official PrintAPI package.
 
-Native fetch, no runtime dependencies, generated wire types, resource methods, ESM and CommonJS builds. Requires Node.js 22.18 or newer. CI targets Node 22, 24 and 26. Other fetch-based runtimes may work but are not currently verified.
+Native fetch, no runtime dependencies, generated wire types, resource methods, ESM and CommonJS builds. Requires Node.js 22.18 or newer. CI targets Node 22, 24 and 26, and Bun 1.4.4. Package installation is also checked with pnpm and Yarn Classic. Other fetch-based runtimes may work but are not currently verified.
 
 ## Install and run
 
-The package is prepared locally and has not been published to npm. Build and pack it first:
+Install the prebuilt release with your preferred package manager:
+
+```sh
+npm install https://github.com/DapperMickie/printapi-typescript/releases/download/v0.1.0/printapi-sdk-0.1.0.tgz
+pnpm add https://github.com/DapperMickie/printapi-typescript/releases/download/v0.1.0/printapi-sdk-0.1.0.tgz
+yarn add https://github.com/DapperMickie/printapi-typescript/releases/download/v0.1.0/printapi-sdk-0.1.0.tgz
+bun add https://github.com/DapperMickie/printapi-typescript/releases/download/v0.1.0/printapi-sdk-0.1.0.tgz
+```
+
+The npm registry publication is pending npm account authentication. Once published there, the shorter commands will be `npm install printapi-sdk`, `pnpm add printapi-sdk`, `yarn add printapi-sdk`, and `bun add printapi-sdk`. See [publishing](docs/publishing.md) for the release workflow.
+
+To build from source:
 
 ```sh
 npm ci
@@ -170,4 +181,4 @@ Generated output is committed and reproducible with the locked dependencies. Wee
 
 See [architecture research](docs/architecture-research.md) for source-linked decisions and [contract notes](docs/contract.md) for scope and verification limits. The compiler is pinned to TypeScript 5.9.3 because the current generator declares TypeScript 5.x peer support. Generated consumer declarations are tested with this compiler. Build tools run only in development.
 
-No package has been published and no credentialed API calls or live orders were made. Package name availability and licensing must be settled before public distribution; the repository currently uses `UNLICENSED`.
+Licensed under [MIT](LICENSE). No credentialed PrintAPI calls or live orders were made during verification.
