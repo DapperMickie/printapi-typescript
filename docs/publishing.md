@@ -2,9 +2,9 @@
 
 The package is MIT licensed and publishes compiled JavaScript with ESM/CommonJS declarations. Consumers do not need TypeScript or build tools to install it. One public npm package can be installed with npm, pnpm, Yarn or Bun.
 
-## First npm publication
+## Manual npm publication
 
-The package name is `printapi-sdk`. An npm registry lookup returned 404 on 2026-11-09; this does not reserve the name. The first publish requires an npm account authorized to create this package. Use an interactive npm login or a short-lived granular publishing token with the permissions required by your account's two-factor-authentication settings. Never commit tokens or a credential-bearing .npmrc.
+The package name is `printapi-sdk`. Version 0.1.0 was submitted to npm on 2026-11-09 using browser-authorized publication. Future publications require an npm account authorized to publish this package. Use an interactive npm login or a short-lived granular publishing token with the permissions required by your account's two-factor-authentication settings. Never commit tokens or a credential-bearing .npmrc.
 
 ```sh
 npm ci

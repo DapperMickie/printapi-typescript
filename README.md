@@ -6,16 +6,16 @@ Native fetch, no runtime dependencies, generated wire types, resource methods, E
 
 ## Install and run
 
-Install the prebuilt release with your preferred package manager:
+Install from npm with your preferred package manager:
 
 ```sh
-npm install https://github.com/DapperMickie/printapi-typescript/releases/download/v0.1.0/printapi-sdk-0.1.0.tgz
-pnpm add https://github.com/DapperMickie/printapi-typescript/releases/download/v0.1.0/printapi-sdk-0.1.0.tgz
-yarn add https://github.com/DapperMickie/printapi-typescript/releases/download/v0.1.0/printapi-sdk-0.1.0.tgz
-bun add https://github.com/DapperMickie/printapi-typescript/releases/download/v0.1.0/printapi-sdk-0.1.0.tgz
+npm install printapi-sdk
+pnpm add printapi-sdk
+yarn add printapi-sdk
+bun add printapi-sdk
 ```
 
-The npm registry publication is pending npm account authentication. Once published there, the shorter commands will be `npm install printapi-sdk`, `pnpm add printapi-sdk`, `yarn add printapi-sdk`, and `bun add printapi-sdk`. See [publishing](docs/publishing.md) for the release workflow.
+Package: [printapi-sdk on npm](https://www.npmjs.com/package/printapi-sdk). The [GitHub release tarball](https://github.com/DapperMickie/printapi-typescript/releases/tag/v0.1.0) is also available. See [publishing](docs/publishing.md) for the release workflow.
 
 To build from source:
 
